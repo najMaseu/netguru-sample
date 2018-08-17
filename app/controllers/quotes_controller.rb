@@ -1,5 +1,5 @@
 class QuotesController < ApplicationController
-  before_action :set_quote, only: [:show, :edit, :update, :destroy]
+  before_action :redirect, only: [:show, :edit, :update, :destroy]
 
   # GET /quotes
   # GET /quotes.json
@@ -10,7 +10,6 @@ class QuotesController < ApplicationController
   # GET /quotes/1
   # GET /quotes/1.json
   def show
-    redirect_to root_path
   end
 
   # GET /quotes/new
@@ -41,31 +40,17 @@ class QuotesController < ApplicationController
   # PATCH/PUT /quotes/1
   # PATCH/PUT /quotes/1.json
   def update
-    respond_to do |format|
-      if @quote.update(quote_params)
-        format.html { redirect_to @quote, notice: 'Quote was successfully updated.' }
-        format.json { render :show, status: :ok, location: @quote }
-      else
-        format.html { render :edit }
-        format.json { render json: @quote.errors, status: :unprocessable_entity }
-      end
-    end
   end
 
   # DELETE /quotes/1
   # DELETE /quotes/1.json
   def destroy
-    @quote.destroy
-    respond_to do |format|
-      format.html { redirect_to root_path, notice: 'Quote was successfully destroyed.' }
-      format.json { head :no_content }
-    end
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_quote
-      @quote = Quote.find(params[:id])
+    def redirect
+      redirect_to root_path
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
