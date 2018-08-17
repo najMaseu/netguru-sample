@@ -14,6 +14,7 @@
     <% @quotes.each do |quote| %>
       <tr>
         <td><%= quote.citation %></td>
+        <td><%= quote.created_at.strftime("%d %B %Y") %></td>
         <td><%= link_to 'Show', quote %></td>
         <td><%= link_to 'Edit', edit_quote_path(quote) %></td>
         <td><%= link_to 'Destroy', quote, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -25,3 +26,4 @@
 <br>
 
 <%= link_to 'New Quote', new_quote_path %>
+<%= will_paginate(@quotes) %>
