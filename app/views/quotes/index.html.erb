@@ -1,26 +1,36 @@
-<p id="notice"><%= notice %></p>
+<section id='heading' class='jumbotron text-center'>
+  <div class='container'>
+    <h1 class='jumbotron-heading'>Awesome quotes</h1>
+    <p class='lead text-muted'>Submit your quotes below!</p>
+    <p><%= link_to 'New Quote', new_quote_path, class:'btn btn-primary' %></p>
+  </div>
+</section>
 
-<h1>Quotes</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Citation</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @quotes.each do |quote| %>
-      <tr>
-        <td><%= quote.citation %></td>
-        <td><%= quote.created_at.strftime("%d %B %Y") %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<div class='container'>
+  <div class='row'>
+    <h1 id='notice'><%= notice %></h1>
+  </div>
+</div>
 
 <br>
 
-<%= link_to 'New Quote', new_quote_path %>
-<%= will_paginate(@quotes) %>
+<% @quotes.each do |quote| %>
+<div class='row'>
+  <div class='col-sm-8 col-sm-offset-2'>
+    <div  class='jumbotron'>
+        <blockquote class='blockquote'>
+          <h1>'<%= quote.citation %>'</h1>
+          <footer class='blockquote-footer'>
+            <%= quote.created_at.strftime('%d %B %Y') %>
+          </footer>
+        </blockquote>
+    </div>
+  </div>
+</div>
+<%end%>
+
+<div class='row'>
+  <div class='col-sm-4 col-sm-offset-5'>
+    <%= will_paginate(@quotes) %>
+  </div>
+</div>

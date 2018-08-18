@@ -1,7 +1,7 @@
 <%= form_with(model: quote, local: true) do |form| %>
   <% if quote.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(quote.errors.count, "error") %> prohibited this quote from being saved:</h2>
+    <div id='error_explanation'>
+      <h2><%= pluralize(quote.errors.count, 'error') %> prohibited this quote from being saved:</h2>
 
       <ul>
       <% quote.errors.full_messages.each do |message| %>
@@ -10,13 +10,25 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= form.label :citation %>
-    <%= form.text_area :citation %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
 <% end %>
+
+<div class='row'>
+  <div class='col-xs-12'>
+    <%= form_for(@quote, :html => {class: 'form-horizontal', role: 'form'}) do |f| %>
+    <div class='form-group'>
+      <div class='control-label col-sm-2'>
+      <% f.label :citation %>
+      </div>
+      <div class='col-sm-8'>
+      <%= f.text_area :citation, class: 'form-control', placeholder: 'Write your thoughts here...', autofocus: true %>
+      </div>
+    </div>
+    <div class='form-group'>
+      <div class='col-sm-offset-2 col-sm-10'>
+        <%= f.submit class: 'btn btn-primary btn-lg'%>
+        <%= link_to 'Back', root_path, class: 'btn btn-warning btn-lg' %>
+      </div>
+    </div>
+    <%end%>
+  </div>
+</div>
